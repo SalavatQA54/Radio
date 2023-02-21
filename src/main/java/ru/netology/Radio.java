@@ -1,66 +1,87 @@
 package ru.netology;
 
 public class Radio {
-    private int currentStation;
     private int currentVolume;
-    private int minNumber = 0;
-    private int maxNumber = 9;
-    private int minVolume = 0;
-    private int maxVolume = 10;
+    private int currentStation;
+    private int minStation;
+    private int maxStation;
+    private int minVolume;
+    private int maxVolume;
+
+    //Конструкторы
+    public Radio() { //значения по умолчанию
+        minStation = 0;
+        maxStation = 9;
+        minVolume = 0;
+        maxVolume = 10;
+    }
+
+    public Radio(int sizeRadio) { //поле значения кол-ва станций
+        maxStation = sizeRadio - 1;
+    }
+
+    //Геттеры
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
 
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setCurrentStation(int newCurrentStation) { // указываем границы диапазона
-        if (newCurrentStation < minNumber) {
+    //Сеттер громкости
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentStation > maxNumber) {
+        if (newCurrentVolume > maxVolume) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
+    // Сеттер радиостанций
+    public void setCurrentStation(int newCurrentStation) {
+        if (newCurrentStation < minStation) {
+            return;
+        }
+        if (newCurrentStation > maxStation) {
             return;
         }
         currentStation = newCurrentStation;
     }
 
-    public void nextNumber() {
-        if (currentStation < maxNumber) {
-            currentStation = currentStation + 1;
-        } else {
-            currentStation = minNumber; // переход счетчика после 9 на 0
-        }
-    }
-
-    public void prevNumber() {
-        if (currentStation > minNumber) {
-            currentStation = currentStation - 1;
-        } else {
-            currentStation = maxNumber; // переход счетчика после 0 на 9
-        }
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) { // указываем границы диапазона
-        if (newCurrentVolume < minVolume) {
-            newCurrentVolume = minVolume;
-        }
-        if (newCurrentVolume > maxVolume) {
-            newCurrentVolume = maxVolume;
-        }
-        currentVolume = newCurrentVolume;
-    }
-
+    //Увеличение громкости на +1
     public void increaseVolume() {
-        if (currentVolume < maxVolume) {
-            currentVolume = currentVolume + 1;
+        if (getCurrentVolume() < maxVolume) {
+            setCurrentVolume(currentVolume + 1);
         }
     }
 
+    //Понижение громкости на -1
     public void decreaseVolume() {
-        if (currentVolume > minVolume) {
-            currentVolume = currentVolume - 1;
+        if (getCurrentVolume() > minVolume) {
+            setCurrentVolume(currentVolume - 1);
         }
     }
+
+    //Переключение радиостанции на +1
+    public void nextStation() {
+        if (getCurrentStation() < maxStation) {
+            setCurrentStation(currentStation + 1);
+        } else {
+            setCurrentStation(minStation);
+        }
+    }
+
+    //Переключение радиостанции на -1
+    public void prevStation() {
+        if (getCurrentStation() > minStation) {
+            setCurrentStation(currentStation - 1);
+        } else {
+            setCurrentStation(maxStation);
+        }
+    }
+
+
 }
