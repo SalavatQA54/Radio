@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    @Test
+   @Test
     public void shouldSetRadioStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(15, 20);
 
-        radio.setCurrentRadioStation(5);
+        radio.setCurrentRadioStation(15);
 
-        int expected = 5;
+        int expected = 15;
         int actual = radio.getCurrentRadioStation();
         Assertions.assertEquals(expected, actual);
     }
