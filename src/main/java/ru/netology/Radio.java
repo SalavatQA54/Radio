@@ -10,6 +10,11 @@ public class Radio {
     private int currentRadioStation;
     private int currentSoundLevel;
 
+    public Radio(int currentRadioStation, int maxRadioStation) {
+        this.currentRadioStation = currentRadioStation;
+        this.maxRadioStation = maxRadioStation;
+    }
+    
     public Radio(int numberOfRadioStation) {
         this.numberOfRadioStation = numberOfRadioStation - 1;
     }
