@@ -7,7 +7,7 @@ public class RadioTest {
 
    @Test
     public void shouldSetRadioStation() {
-        Radio radio = new Radio(15, 20);
+        Radio radio = new Radio(20);
 
         radio.setCurrentRadioStation(15);
 
