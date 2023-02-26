@@ -33,7 +33,7 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxRadioStation) {
+        if (currentRadioStation > numberOfRadioStation - 1) {
             return;
         }
         if (currentRadioStation < minRadioStation) {
