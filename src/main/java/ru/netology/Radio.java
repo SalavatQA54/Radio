@@ -1,66 +1,96 @@
 package ru.netology;
 
 public class Radio {
-    private int currentStation;
-    private int currentVolume;
-    private int minNumber = 0;
-    private int maxNumber = 9;
+
+    private int maxRadioStation = 9;
+    private int minRadioStation = 0;
+    private int numberOfRadioStation = 10;
     private int minVolume = 0;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
+    private int currentRadioStation;
+    private int currentSoundLevel;
 
-    public int getCurrentStation() {
-        return currentStation;
+    public Radio(int currentRadioStation, int maxRadioStation) {
+        this.currentRadioStation = currentRadioStation;
+        this.maxRadioStation = maxRadioStation;
+    }
+    
+    public Radio(int numberOfRadioStation) {
+        this.numberOfRadioStation = numberOfRadioStation - 1;
     }
 
-    public void setCurrentStation(int newCurrentStation) { // указываем границы диапазона
-        if (newCurrentStation < minNumber) {
+    public Radio() {
+
+    }
+
+    public int getNumberOfRadioStation() {
+        return numberOfRadioStation;
+    }
+
+    public int getCurrentRadioStation() {
+
+        return currentRadioStation;
+    }
+
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation > numberOfRadioStation - 1) {
             return;
         }
-        if (newCurrentStation > maxNumber) {
+        if (currentRadioStation < minRadioStation) {
             return;
         }
-        currentStation = newCurrentStation;
+        this.currentRadioStation = currentRadioStation;
     }
 
-    public void nextNumber() {
-        if (currentStation < maxNumber) {
-            currentStation = currentStation + 1;
+    public int getCurrentSoundLevel() {
+        return currentSoundLevel;
+    }
+
+    public void setCurrentSoundLevel(int currentSoundLevel) {
+        if (currentSoundLevel < minVolume) {
+            return;
+        }
+        if (currentSoundLevel > maxVolume) {
+            return;
+        }
+        this.currentSoundLevel = currentSoundLevel;
+    }
+
+    public void setChangeRadioStation(int changeRadioStation) {
+        if (changeRadioStation > maxRadioStation) {
+            return;
+        }
+        if (changeRadioStation < minRadioStation) {
+            changeRadioStation = minRadioStation;
+        }
+        this.currentRadioStation = changeRadioStation;
+    }
+
+    public void next() {
+        if (currentRadioStation < numberOfRadioStation - 1) {
+            currentRadioStation++;
         } else {
-            currentStation = minNumber; // переход счетчика после 9 на 0
+            currentRadioStation = minRadioStation;
         }
     }
 
-    public void prevNumber() {
-        if (currentStation > minNumber) {
-            currentStation = currentStation - 1;
+    public void prev() {
+        if (currentRadioStation > minRadioStation) {
+            currentRadioStation--;
         } else {
-            currentStation = maxNumber; // переход счетчика после 0 на 9
+            currentRadioStation = numberOfRadioStation - 1;
         }
     }
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) { // указываем границы диапазона
-        if (newCurrentVolume < minVolume) {
-            newCurrentVolume = minVolume;
-        }
-        if (newCurrentVolume > maxVolume) {
-            newCurrentVolume = maxVolume;
-        }
-        currentVolume = newCurrentVolume;
-    }
-
-    public void increaseVolume() {
-        if (currentVolume < maxVolume) {
-            currentVolume = currentVolume + 1;
+    public void volumePlus() {
+        if (currentSoundLevel < maxVolume) {
+            currentSoundLevel++;
         }
     }
 
-    public void decreaseVolume() {
-        if (currentVolume > minVolume) {
-            currentVolume = currentVolume - 1;
+    public void volumeMinus() {
+        if (currentSoundLevel > minVolume) {
+            currentSoundLevel--;
         }
     }
 }
