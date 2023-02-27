@@ -67,7 +67,7 @@ public class Radio {
     }
 
     public void next() {
-        if (currentRadioStation < maxRadioStation) {
+        if (currentRadioStation < numberOfRadioStation - 1) {
             currentRadioStation++;
         } else {
             currentRadioStation = minRadioStation;
@@ -78,7 +78,7 @@ public class Radio {
         if (currentRadioStation > minRadioStation) {
             currentRadioStation--;
         } else {
-            currentRadioStation = maxRadioStation;
+            currentRadioStation = numberOfRadioStation - 1;
         }
     }
 
